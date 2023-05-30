@@ -3,7 +3,7 @@
 This API allows users to book flights and retrieve booking information.
 
 ## Depoloyed Link
-Flight_Booking_API()
+[Flight_Booking_API](https://flight-booking-v25z.onrender.com)
 
 ## Getting Started
 
