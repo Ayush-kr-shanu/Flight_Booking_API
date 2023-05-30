@@ -4,6 +4,7 @@ const { authMiddleware } = require("./middleware/auth");
 const { userRoute } = require("./routes/user.routes");
 const { flightRoute } = require("./routes/flight.routes");
 const { bookingRoute } = require("./routes/booking.routes");
+const { errorHandler } = require("./middleware/error");
 const app = express();
 
 app.get("/", (req, res) => {
@@ -18,6 +19,8 @@ app.use(authMiddleware);
 
 app.use("/api", flightRoute)
 app.use("/api", bookingRoute)
+
+app.use(errorHandler)
 
 app.listen(4500, async () => {
   try {

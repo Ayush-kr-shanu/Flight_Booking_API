@@ -5,7 +5,7 @@ const { UserModel } = require("../models/user.model")
 const userRoute=express.Router()
 require("dotenv").config()
 
-userRoute.post("/register", async(req,res)=>{
+userRoute.post("/register", async(req,res, next)=>{
     try {
         const {name, email, password}=req.body
 
@@ -21,11 +21,12 @@ userRoute.post("/register", async(req,res)=>{
 
         res.status(200).send({msg:"User registered scuessfully"})
     } catch (err) {
-        res.status(500).send({msg:"Error in registering user", err:err.message})
+        // res.status(500).send({msg:"Error in registering user", err:err.message})
+        next(err)
     }
 })
 
-userRoute.post("/login", async (req, res) => {
+userRoute.post("/login", async (req, res, next) => {
     try {
       const { email, password } = req.body;
   
@@ -52,7 +53,8 @@ userRoute.post("/login", async (req, res) => {
       });
       res.send({ acessToken, refreshToken });
     } catch (err) {
-      res.send({ msg: "something went wrong", error: err.message });
+      // res.send({ msg: "something went wrong", error: err.message });
+      next(err)
     }
   });
 
